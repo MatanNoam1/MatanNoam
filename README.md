@@ -1,8 +1,8 @@
-# matannoam1.github.io
+# MatanNoam
 
-> Personal portfolio website for **Matan Noam** — Software Engineering student at Ben-Gurion University, Python instructor, and former IDF Staff Sergeant.
+> Personal portfolio website for **Matan Noam** — Software Engineering student at Ben-Gurion University & Python instructor.
 
-**Live site:** [matannoam1.github.io](https://matannoam1.github.io)
+**Live site:** [matan-noam.vercel.app](https://matan-noam.vercel.app)
 
 ---
 
