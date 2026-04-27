@@ -18,7 +18,7 @@ navLinks.querySelectorAll('a').forEach(link => {
 
 // ===== TYPING EFFECT =====
 const phrases = [
-  'Software Engineering Student',
+  'Information Systems & Software Engineering Student',
   'Python Instructor & Mentor',
   'Team Leader',
   'Problem Solver',
