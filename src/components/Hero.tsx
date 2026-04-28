@@ -66,6 +66,12 @@ function useVideoFade(videoRef: React.RefObject<HTMLVideoElement | null>) {
     video.addEventListener('canplay', handleCanPlay)
     video.addEventListener('timeupdate', handleTimeUpdate)
     video.addEventListener('ended', handleEnded)
+
+    // canplay may have already fired before listeners attached
+    if (video.readyState >= 3) handleCanPlay()
+
+    video.play().catch(() => {})
+
     return () => {
       video.removeEventListener('canplay', handleCanPlay)
       video.removeEventListener('timeupdate', handleTimeUpdate)
@@ -110,12 +116,24 @@ export default function Hero() {
     <section id="home" className="relative min-h-screen bg-black overflow-hidden flex flex-col">
       {/* Background video */}
       <div className="absolute inset-0 overflow-hidden">
+        {/* Animated gradient fallback — visible when video hasn't loaded */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: 'radial-gradient(ellipse 80% 60% at 50% 40%, rgba(78,133,191,0.18) 0%, rgba(0,0,0,0) 70%), radial-gradient(ellipse 50% 40% at 20% 80%, rgba(137,170,204,0.1) 0%, transparent 60%)',
+            animation: 'gradient-shift 8s ease infinite',
+            backgroundSize: '200% 200%',
+          }}
+        />
         <video
           ref={videoRef}
           src={VIDEO_URL}
           autoPlay
           muted
           playsInline
+          onError={() => {
+            if (videoRef.current) videoRef.current.style.display = 'none'
+          }}
           className="absolute top-1/2 left-1/2 min-w-full min-h-full object-cover"
           style={{ opacity: 0, transform: 'translateX(-50%) translateY(17%)' }}
         />
@@ -172,7 +190,15 @@ export default function Hero() {
             className="liquid-glass rounded-full px-7 py-3.5 text-sm font-medium
                        text-text-primary hover:bg-white/5 transition-colors"
           >
-            Download CV
+            CV (English)
+          </a>
+          <a
+            href="/Matan_Noam_Resume_HE.pdf"
+            download
+            className="liquid-glass rounded-full px-7 py-3.5 text-sm font-medium
+                       text-text-primary hover:bg-white/5 transition-colors"
+          >
+            CV (Hebrew)
           </a>
         </div>
 
