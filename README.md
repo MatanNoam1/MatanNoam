@@ -1,6 +1,6 @@
 # MatanNoam
 
-> Personal portfolio website for **Matan Noam** — Software Engineering student at Ben-Gurion University & Python instructor.
+> Personal portfolio website for **Matan Noam** - Software Engineering student at Ben-Gurion University & Python instructor.
 
 **Live site:** [matan-noam.vercel.app](https://matan-noam.vercel.app)
 
@@ -8,21 +8,21 @@
 
 ## Overview
 
-A fully responsive personal landing page built with zero dependencies — no frameworks, no build tools, no npm. Open `index.html` and it runs. Designed to be fast, clean, and maintainable.
+A fully responsive personal landing page built with zero dependencies - no frameworks, no build tools, no npm. Open `index.html` and it runs. Designed to be fast, clean, and maintainable.
 
 ---
 
 ## Features
 
-- **Hero** — Animated gradient name, typing effect cycling through roles, floating gradient orbs
-- **About** — Spinning avatar ring, quick stats, bio, social links
-- **Skills** — 4 category cards with tag-based skill display
-- **Experience** — Vertical timeline of 5 roles (reverse chronological)
-- **Education** — Degree and coursework cards
-- **GitHub Projects** — Live-fetched repo cards via GitHub public API, sorted by stars
-- **Contact** — Direct links to email, LinkedIn, GitHub, phone
-- **Responsive** — Mobile-first layout with hamburger nav at ≤768px
-- **Animations** — IntersectionObserver scroll reveals, CSS keyframe orbs, typing effect
+- **Hero** - Animated gradient name, typing effect cycling through roles, floating gradient orbs
+- **About** - Spinning avatar ring, quick stats, bio, social links
+- **Skills** - 4 category cards with tag-based skill display
+- **Experience** - Vertical timeline of 5 roles (reverse chronological)
+- **Education** - Degree and coursework cards
+- **GitHub Projects** - Live-fetched repo cards via GitHub public API, sorted by stars
+- **Contact** - Direct links to email, LinkedIn, GitHub, phone
+- **Responsive** - Mobile-first layout with hamburger nav at <=768px
+- **Animations** - IntersectionObserver scroll reveals, CSS keyframe orbs, typing effect
 
 ---
 
@@ -36,8 +36,8 @@ A fully responsive personal landing page built with zero dependencies — no fra
 |---|---|
 | Structure | Semantic HTML5 |
 | Styling | CSS custom properties, Grid, Flexbox, keyframe animations |
-| Behavior | Vanilla ES6+ — IntersectionObserver, Fetch API |
-| Fonts | Google Fonts — Inter + JetBrains Mono (CDN) |
+| Behavior | Vanilla ES6+ - IntersectionObserver, Fetch API |
+| Fonts | Google Fonts - Inter + JetBrains Mono (CDN) |
 | Repos | GitHub public REST API (`/users/MatanNoam1/repos`) |
 
 ---
@@ -76,9 +76,9 @@ python3 -m http.server 3000
 
 ## Deployment
 
-Deployed via **GitHub Pages** — pushing to `main` automatically updates the live site.
+Primary hosting is **Vercel** at [matan-noam.vercel.app](https://matan-noam.vercel.app) - pushing to `main` auto-deploys.
 
-Source: `main` branch → `/ (root)` → served at `https://matannoam1.github.io`
+Also mirrored on **GitHub Pages** at [matannoam1.github.io](https://matannoam1.github.io) (served from the `main` branch root).
 
 ---
 

@@ -57,7 +57,7 @@ function type() {
 function typingLoop() { if (!typingPause) type(); }
 setTimeout(typingLoop, 800);
 
-// ===== INTERSECTION OBSERVER — SCROLL REVEAL =====
+// ===== INTERSECTION OBSERVER - SCROLL REVEAL =====
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if (e.isIntersecting) {
@@ -67,7 +67,7 @@ const revealObserver = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.12 });
 
-// Hero elements — trigger immediately
+// Hero elements - trigger immediately
 document.querySelectorAll('.reveal').forEach(el => {
   revealObserver.observe(el);
 });
