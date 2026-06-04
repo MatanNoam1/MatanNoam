@@ -178,6 +178,23 @@ window.addEventListener('scroll', () => {
   }
 });
 
+// Mobile Menu Toggle
+const hamburger = document.querySelector('.hamburger');
+const navLinks = document.querySelector('.nav-links');
+
+if (hamburger && navLinks) {
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
+
+  // Close menu when a link is clicked
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('active');
+    });
+  });
+}
+
 // GSAP Animations
 if (typeof gsap !== 'undefined') {
   const reveals = document.querySelectorAll('.reveal');
