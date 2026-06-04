@@ -29,14 +29,63 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-// Custom Cursor Logic
+// Custom Cursor & True 3D Tracking Logic
 const cursor = document.querySelector('.cursor-glow');
+const avatarContainer = document.querySelector('.avatar-container');
+
+let mouseX = window.innerWidth / 2;
+let mouseY = window.innerHeight / 2;
+let currentRotateX = 0;
+let currentRotateY = 0;
+let currentBgX = 0;
+let currentBgY = 0;
+
 document.addEventListener('mousemove', (e) => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+  
   if (cursor) {
     cursor.style.left = e.clientX + 'px';
     cursor.style.top = e.clientY + 'px';
   }
 });
+
+// Use requestAnimationFrame and Lerp for buttery smooth physics without lag
+if (avatarContainer) {
+  function animateAvatar() {
+    const rect = avatarContainer.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    
+    // Target calculations
+    // Increased tilt sensitivity from /60 to /45 to add slightly more volume
+    let targetRotateY = (mouseX - centerX) / 45; 
+    let targetRotateX = -(mouseY - centerY) / 45; 
+    
+    // Increased clamp limit from 15 to 25 degrees
+    targetRotateY = Math.max(-25, Math.min(25, targetRotateY));
+    targetRotateX = Math.max(-25, Math.min(25, targetRotateX));
+    
+    let targetBgX = (mouseX - centerX) / 12;
+    let targetBgY = (mouseY - centerY) / 12;
+    targetBgX = Math.max(-60, Math.min(60, targetBgX));
+    targetBgY = Math.max(-60, Math.min(60, targetBgY));
+    
+    // Lerp (Linear Interpolation)
+    currentRotateX += (targetRotateX - currentRotateX) * 0.1;
+    currentRotateY += (targetRotateY - currentRotateY) * 0.1;
+    currentBgX += (targetBgX - currentBgX) * 0.1;
+    currentBgY += (targetBgY - currentBgY) * 0.1;
+    
+    // Apply smooth styles
+    avatarContainer.style.transform = `rotateY(${currentRotateY}deg) rotateX(${currentRotateX}deg)`;
+    avatarContainer.style.setProperty('--bg-x', `${currentBgX}px`);
+    avatarContainer.style.setProperty('--bg-y', `${currentBgY}px`);
+    
+    requestAnimationFrame(animateAvatar);
+  }
+  animateAvatar();
+}
 
 // CPU Circuit Background Canvas
 const canvas = document.getElementById('space-canvas');
@@ -244,7 +293,7 @@ if (typeof gsap !== 'undefined') {
   });
 
   // Hero -> About
-  tl.to('#global-avatar', { left: '85%', top: '20%', scale: 0.5, rotation: 180, opacity: 0.7, ease: 'none' })
+  tl.to('#global-avatar', { left: '85%', top: '20%', scale: 0.5, opacity: 0.7, ease: 'none' })
     .to(bgState, { packetBaseSpeed: 0.01, packetSpeedRange: 0.02, lineOpacity: 0.15, maxPackets: 120, spawnChance: 0.7, nodeColorAlpha: 0.7, ease: 'none' }, "<")
     
   // About -> Experience Top (Center on the left timeline line)
@@ -255,7 +304,6 @@ if (typeof gsap !== 'undefined') {
       }, 
       top: '30%', 
       scale: 0.25, 
-      rotation: 360, 
       opacity: 0.9, 
       ease: 'none' 
     })
@@ -269,22 +317,21 @@ if (typeof gsap !== 'undefined') {
       }, 
       top: '70%', 
       scale: 0.25, 
-      rotation: 540, 
       opacity: 0.9, 
       ease: 'none' 
     })
     .to(bgState, { packetBaseSpeed: 0.03, packetSpeedRange: 0.04, lineOpacity: 0.35, maxPackets: 200, spawnChance: 0.3, nodeColorAlpha: 0.9, ease: 'none' }, "<")
 
   // Experience Bottom -> Education (Move to far right top)
-    .to('#global-avatar', { left: '90%', top: '25%', scale: 0.45, rotation: 720, opacity: 0.7, ease: 'none' }) 
+    .to('#global-avatar', { left: '90%', top: '25%', scale: 0.45, opacity: 0.7, ease: 'none' }) 
     .to(bgState, { packetBaseSpeed: 0.04, packetSpeedRange: 0.05, lineOpacity: 0.45, maxPackets: 230, spawnChance: 0.2, nodeColorAlpha: 0.9, ease: 'none' }, "<")
     
   // Education -> Projects (Bigger and a bit down at mid high center)
-    .to('#global-avatar', { left: '50%', top: '35%', scale: 1, rotation: 900, opacity: 0.9, ease: 'none' })
+    .to('#global-avatar', { left: '50%', top: '35%', scale: 1, opacity: 0.9, ease: 'none' })
     .to(bgState, { packetBaseSpeed: 0.05, packetSpeedRange: 0.06, lineOpacity: 0.6, maxPackets: 260, spawnChance: 0.1, nodeColorAlpha: 1, ease: 'none' }, "<")
     
   // Projects -> Contact (Stop and stay at Projects location, do not follow to connect)
-    .to('#global-avatar', { left: '50%', top: '35%', scale: 1, rotation: 1080, opacity: 0.9, ease: 'none' })
+    .to('#global-avatar', { left: '50%', top: '35%', scale: 1, opacity: 0.9, ease: 'none' })
     .to(bgState, { packetBaseSpeed: 0.06, packetSpeedRange: 0.07, lineOpacity: 0.8, maxPackets: 300, spawnChance: 0.05, nodeColorAlpha: 1, ease: 'none' }, "<");
 }
 
