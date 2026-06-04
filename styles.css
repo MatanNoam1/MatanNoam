@@ -98,68 +98,40 @@ ul {
   display: flex;
   justify-content: center;
   align-items: center;
+  transform-style: preserve-3d;
+  perspective: 1000px;
 }
 
-/* Tech Cables SVG */
-.tech-cables {
-  position: absolute;
-  width: 600px;
-  height: 600px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1;
-  animation: spin-slow 30s linear infinite;
-}
-
-.cable {
-  fill: none;
-  stroke: rgba(0, 240, 255, 0.6);
-  stroke-width: 2;
-  stroke-dasharray: 8 6;
-  animation: dataFlow 1.5s linear infinite;
-}
-
-.main-cable {
-  stroke: rgba(112, 0, 255, 0.8);
-  stroke-width: 3;
-}
-
-.intersection {
-  fill: var(--accent-3);
-  stroke: var(--accent-1);
-  stroke-width: 1.5;
-}
-
-.intersection-main {
-  fill: var(--accent-2);
-  filter: drop-shadow(0 0 8px var(--accent-2));
-}
-
-@keyframes dataFlow {
-  to { stroke-dashoffset: -14; }
-}
+/* Removed SVG cables and nodes completely */
 
 @keyframes spin-slow {
-  to { transform: translate(-50%, -50%) rotate(360deg); }
+  to { transform: translate(-50%, -50%) translateZ(-100px) rotate(360deg); }
 }
 
 /* High-Quality CPU Sphere Core */
-.avatar-img {
+.avatar-img-wrapper {
   width: 320px;
   height: 320px;
-  border-radius: 50%;
-  object-fit: cover;
-  z-index: 3;
-  mix-blend-mode: screen; /* Completely removes the pure black background */
+  /* Removed mix-blend-mode and z-index so the solid sphere naturally occludes the moons in true 3D space */
   animation: float-img 6s ease-in-out infinite;
-  filter: drop-shadow(0 0 30px rgba(0, 240, 255, 0.4));
+  transform: translateZ(40px); /* Pop out in 3D space */
+}
+
+.avatar-img-globe {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-image: url('assets/cpu_sphere.png');
+  background-size: 150%; /* Large enough to give a buffer for the edges */
+  background-repeat: no-repeat;
+  background-position: calc(50% + var(--bg-x, 0px)) calc(50% + var(--bg-y, 0px));
+  box-shadow: inset -30px -30px 50px rgba(0, 0, 0, 0.9), inset 10px 10px 30px rgba(0, 240, 255, 0.5);
 }
 
 @keyframes float-img {
-  0% { transform: translateY(0px) scale(1); filter: drop-shadow(0 0 30px rgba(0,240,255,0.4)); }
-  50% { transform: translateY(-30px) scale(1.05); filter: drop-shadow(0 0 60px rgba(112,0,255,0.7)); }
-  100% { transform: translateY(0px) scale(1); filter: drop-shadow(0 0 30px rgba(0,240,255,0.4)); }
+  0% { transform: translateY(0px) scale(1) translateZ(40px); filter: drop-shadow(0 0 30px rgba(0,240,255,0.4)); }
+  50% { transform: translateY(-30px) scale(1.05) translateZ(40px); filter: drop-shadow(0 0 60px rgba(112,0,255,0.7)); }
+  100% { transform: translateY(0px) scale(1) translateZ(40px); filter: drop-shadow(0 0 30px rgba(0,240,255,0.4)); }
 }
 
 .avatar-ring {
@@ -177,7 +149,7 @@ ul {
   border: 2px solid rgba(0, 240, 255, 0.2);
   border-top: 3px solid var(--accent-1);
   border-bottom: 3px solid var(--accent-1);
-  animation: spin 12s linear infinite;
+  animation: gyro-1 12s linear infinite;
   opacity: 0.8;
 }
 
@@ -185,44 +157,90 @@ ul {
   width: 550px;
   height: 550px;
   border: 2px dashed var(--accent-3);
-  animation: spin-reverse 18s linear infinite;
+  animation: gyro-2 18s linear infinite;
   opacity: 0.6;
-}
-
-.ring-3 {
-  width: 410px;
-  height: 410px;
-  border: 1px dotted rgba(112, 0, 255, 0.5);
-  border-left: 4px solid var(--accent-2);
-  animation: spin 8s linear infinite;
 }
 
 .ring-4 {
   width: 600px;
   height: 600px;
   border: 1px solid rgba(255, 255, 255, 0.05);
-  animation: spin-reverse 25s linear infinite;
+  animation: gyro-4 25s linear infinite;
+}
+
+.ring-5 {
+  width: 500px;
+  height: 500px;
+  border: 3px solid rgba(0, 240, 255, 0.6);
+  border-right: 5px solid var(--accent-1);
+  animation: gyro-5 9s linear infinite;
+  opacity: 1;
+}
+
+.ring-7 {
+  width: 700px;
+  height: 700px;
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  border-left: 3px solid rgba(0, 240, 255, 0.6);
+  animation: gyro-7 20s linear infinite;
+  transform-style: preserve-3d;
+}
+
+/* Orbiting Moons */
+.moon {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  top: -12px;
+  left: calc(50% - 12px);
+}
+
+.moon-1 {
+  background: #00f0ff;
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.8), inset -5px -5px 10px rgba(0,0,0,0.5);
+}
+
+.moon-4 {
+  bottom: -12px;
+  left: calc(50% - 12px);
+  top: auto;
+  background: #00f0ff;
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.8), inset -5px -5px 10px rgba(0,0,0,0.5);
 }
 
 .orbiting-node {
   position: absolute;
-  top: -5px; left: 50%;
-  width: 12px; height: 12px;
-  background: var(--accent-2);
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
-  box-shadow: 0 0 15px var(--accent-2);
+  background: var(--accent-1);
+  box-shadow: 0 0 15px var(--accent-1);
+  top: 0;
+  left: 50%;
   transform: translateX(-50%);
 }
 
-.node-alt {
-  top: 50%; left: -5px;
-  background: var(--accent-3);
-  box-shadow: 0 0 15px var(--accent-3);
-  transform: translateY(-50%);
+@keyframes gyro-1 {
+  0% { transform: translate(-50%, -50%) rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
+  100% { transform: translate(-50%, -50%) rotateX(360deg) rotateY(180deg) rotateZ(360deg); }
 }
-
-@keyframes spin { 100% { transform: translate(-50%, -50%) rotate(360deg); } }
-@keyframes spin-reverse { 100% { transform: translate(-50%, -50%) rotate(-360deg); } }
+@keyframes gyro-2 {
+  0% { transform: translate(-50%, -50%) rotateX(-20deg) rotateY(60deg) rotateZ(0deg); }
+  100% { transform: translate(-50%, -50%) rotateX(-20deg) rotateY(60deg) rotateZ(-360deg); }
+}
+@keyframes gyro-4 {
+  0% { transform: translate(-50%, -50%) rotateX(45deg) rotateY(45deg) rotateZ(0deg); }
+  100% { transform: translate(-50%, -50%) rotateX(405deg) rotateY(405deg) rotateZ(-360deg); }
+}
+@keyframes gyro-5 {
+  0% { transform: translate(-50%, -50%) rotateX(0deg) rotateY(45deg) rotateZ(0deg); }
+  100% { transform: translate(-50%, -50%) rotateX(360deg) rotateY(45deg) rotateZ(360deg); }
+}
+@keyframes gyro-7 {
+  0% { transform: translate(-50%, -50%) rotateX(70deg) rotateY(20deg) rotateZ(0deg); }
+  100% { transform: translate(-50%, -50%) rotateX(70deg) rotateY(20deg) rotateZ(360deg); }
+}
 
 /* Glassmorphism utility */
 .glass-panel {

@@ -27,56 +27,22 @@
 
   <!-- Global Evolving Avatar Core -->
   <div class="global-avatar" id="global-avatar">
-    <div class="avatar-container">
-      <!-- SVG Data Cables & Intersections -->
-      <svg class="tech-cables" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <filter id="glow">
-            <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
-            <feMerge>
-              <feMergeNode in="coloredBlur"/>
-              <feMergeNode in="SourceGraphic"/>
-            </feMerge>
-          </filter>
-        </defs>
-        <g filter="url(#glow)">
-          <!-- Branches -->
-          <polyline points="300,300 150,150 60,150" class="cable" />
-          <circle cx="150" cy="150" r="5" class="intersection" />
-          <circle cx="60" cy="150" r="3" class="intersection" />
-          
-          <polyline points="300,300 450,150 540,150" class="cable" />
-          <circle cx="450" cy="150" r="5" class="intersection" />
-          <circle cx="540" cy="150" r="3" class="intersection" />
-          
-          <polyline points="300,300 150,450 60,450" class="cable" />
-          <circle cx="150" cy="450" r="5" class="intersection" />
-          <circle cx="60" cy="450" r="3" class="intersection" />
-          
-          <polyline points="300,300 450,450 540,450" class="cable" />
-          <circle cx="450" cy="450" r="5" class="intersection" />
-          <circle cx="540" cy="450" r="3" class="intersection" />
-
-          <!-- Main Axis Intersects -->
-          <polyline points="300,300 300,80" class="cable main-cable" />
-          <circle cx="300" cy="80" r="7" class="intersection-main" />
-          
-          <polyline points="300,300 300,520" class="cable main-cable" />
-          <circle cx="300" cy="520" r="7" class="intersection-main" />
-        </g>
-      </svg>
-
+    <div class="avatar-container" id="avatar-container">
       <!-- High-Quality 3D CPU Sphere Core -->
-      <img src="assets/cpu_sphere.png" alt="Detailed CPU Sphere" class="avatar-img" />
+      <div class="avatar-img-wrapper">
+        <div class="avatar-img-globe"></div>
+      </div>
       
       <!-- Tech Rings & Nodes -->
       <div class="avatar-ring ring-1"></div>
       <div class="avatar-ring ring-2"></div>
-      <div class="avatar-ring ring-3">
-        <div class="orbiting-node"></div>
-      </div>
-      <div class="avatar-ring ring-4">
-        <div class="orbiting-node node-alt"></div>
+      <div class="avatar-ring ring-4"></div>
+      <div class="avatar-ring ring-5"></div>
+      
+      <!-- Planetary Orbit Rings -->
+      <div class="avatar-ring ring-7">
+        <div class="moon moon-1"></div>
+        <div class="moon moon-4"></div>
       </div>
     </div>
   </div>
