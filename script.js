@@ -29,12 +29,26 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-// Custom Cursor Logic
+// Custom Cursor & Sphere 3D Tracking Logic
 const cursor = document.querySelector('.cursor-glow');
+const avatarContainer = document.querySelector('.avatar-container');
+
 document.addEventListener('mousemove', (e) => {
+  // Move ambient glow
   if (cursor) {
     cursor.style.left = e.clientX + 'px';
     cursor.style.top = e.clientY + 'px';
+  }
+  
+  // 3D Tilt Effect on the CPU Core
+  if (avatarContainer) {
+    // Calculate distance from center of screen to cursor
+    // Divide by a factor to dampen the rotation angle (e.g. max ~20-30 degrees)
+    const xAxis = (window.innerWidth / 2 - e.clientX) / 30; 
+    const yAxis = (window.innerHeight / 2 - e.clientY) / 30;
+    
+    // Apply 3D perspective and rotation
+    avatarContainer.style.transform = `perspective(1000px) rotateY(${-xAxis}deg) rotateX(${yAxis}deg)`;
   }
 });
 
