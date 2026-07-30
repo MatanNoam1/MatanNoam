@@ -92,10 +92,6 @@ ul {
   transition: opacity 0.4s ease;
 }
 
-.global-avatar.avatar-hidden {
-  opacity: 0 !important;
-}
-
 .avatar-container {
   position: relative;
   width: 600px;
@@ -774,6 +770,21 @@ ul {
   font-size: 0.95rem;
   margin-bottom: 1.5rem;
   flex-grow: 1;
+}
+
+.demo-login {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  width: fit-content;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--accent-1);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--accent-1);
+  padding: 0.35rem 0.8rem;
+  border-radius: 4px;
+  margin-bottom: 1.25rem;
 }
 
 .project-tech {
