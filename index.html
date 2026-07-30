@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=2">
   
   <!-- GSAP & Lenis for High-Tech Animations and Smooth Scroll -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -55,6 +55,7 @@
         <li><a href="#experience">Experience</a></li>
         <li><a href="#education">Education</a></li>
         <li><a href="#projects">Projects</a></li>
+        <li><a href="#demos">Demos</a></li>
         <li><a href="#contact" class="nav-cta">Contact</a></li>
       </ul>
       <button class="hamburger">
@@ -241,6 +242,55 @@
       </div>
     </section>
 
+    <!-- DEMOS SECTION -->
+    <section id="demos" class="demos section">
+      <div class="container">
+        <div class="projects-header reveal">
+          <h2 class="section-title">De<span class="text-gradient">mos</span></h2>
+        </div>
+        <p class="project-desc reveal" style="max-width: 640px; margin-bottom: 2.5rem;">
+          Systems built on private client repos, shown here as live working demos on sample data rather than screenshots. Actively being refined, not final client deliverables.
+        </p>
+        <div class="projects-grid">
+          <div class="project-card glass-panel reveal">
+            <div class="project-top">
+              <svg class="project-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+              <div class="project-links">
+                <a href="https://cardiac-sit-cost-billy.trycloudflare.com/" target="_blank">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                </a>
+              </div>
+            </div>
+            <h3 class="project-title">US Deal Scanner</h3>
+            <p class="project-desc">Automated real estate deal finder. Pulls listings from multiple sources, scores each on yield, distress signals, and location, then runs hard money lender financing math on the ones worth chasing. Private repo, live sandbox on sample data.</p>
+            <div class="demo-login"><strong>Login:</strong> guest / guest</div>
+            <div class="project-tech">
+              <span class="tag">Live Demo</span>
+              <span class="tech-dot" style="background-color: #3572A5"></span>
+              Python
+            </div>
+          </div>
+          <div class="project-card glass-panel reveal">
+            <div class="project-top">
+              <svg class="project-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+              <div class="project-links">
+                <a href="https://finance-tracker-demo-two.vercel.app/" target="_blank">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                </a>
+              </div>
+            </div>
+            <h3 class="project-title">Finance Tracker</h3>
+            <p class="project-desc">Multi business finance tracker for a consulting and rental income operation. Automatic 50/50 commission splits on deals, cash flow ledger, budgets, bilingual English/Hebrew interface. Private repo, live sandbox on sample data, resets on every new visit.</p>
+            <div class="project-tech">
+              <span class="tag">Live Demo</span>
+              <span class="tech-dot" style="background-color: var(--accent-1)"></span>
+              React
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- CONTACT SECTION -->
     <section id="contact" class="contact section">
       <div class="container">
@@ -282,6 +332,6 @@
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=3"></script>
 </body>
 </html>

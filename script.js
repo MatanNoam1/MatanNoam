@@ -329,9 +329,11 @@ if (typeof gsap !== 'undefined') {
   // Education -> Projects (Bigger and a bit down at mid high center)
     .to('#global-avatar', { left: '50%', top: '35%', scale: 1, opacity: 0.9, ease: 'none' })
     .to(bgState, { packetBaseSpeed: 0.05, packetSpeedRange: 0.06, lineOpacity: 0.6, maxPackets: 260, spawnChance: 0.1, nodeColorAlpha: 1, ease: 'none' }, "<")
-    
-  // Projects -> Contact (Stop and stay at Projects location, do not follow to connect)
-    .to('#global-avatar', { left: '50%', top: '35%', scale: 1, opacity: 0.9, ease: 'none' })
+
+  // Projects -> Contact (continue the same glide through Demos into a resting
+  // corner near Contact, instead of stopping dead at the Projects position -
+  // the old dead stop is what made it look like it vanished over Demos)
+    .to('#global-avatar', { left: '85%', top: '82%', scale: 0.3, opacity: 0.55, ease: 'none' })
     .to(bgState, { packetBaseSpeed: 0.06, packetSpeedRange: 0.07, lineOpacity: 0.8, maxPackets: 300, spawnChance: 0.05, nodeColorAlpha: 1, ease: 'none' }, "<");
 }
 
