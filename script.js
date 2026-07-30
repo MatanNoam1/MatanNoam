@@ -333,6 +333,24 @@ if (typeof gsap !== 'undefined') {
   // Projects -> Contact (Stop and stay at Projects location, do not follow to connect)
     .to('#global-avatar', { left: '50%', top: '35%', scale: 1, opacity: 0.9, ease: 'none' })
     .to(bgState, { packetBaseSpeed: 0.06, packetSpeedRange: 0.07, lineOpacity: 0.8, maxPackets: 300, spawnChance: 0.05, nodeColorAlpha: 1, ease: 'none' }, "<");
+
+  // Demos sits inside the "Projects -> Contact hold" scroll range, and the shared
+  // scrub timeline above times its stages by equal duration fractions, not by actual
+  // section height - Projects' own grid is tall enough that this doesn't line up with
+  // where Demos actually falls. Simplest robust fix: fade the avatar out independently
+  // whenever the Demos section is substantially in view, regardless of what the main
+  // timeline is doing, and fade it back in once past it (CSS !important beats the
+  // inline opacity GSAP is scrubbing above).
+  const avatarEl = document.getElementById('global-avatar');
+  ScrollTrigger.create({
+    trigger: '#demos',
+    start: 'top 70%',
+    end: 'bottom 30%',
+    onEnter: () => avatarEl.classList.add('avatar-hidden'),
+    onEnterBack: () => avatarEl.classList.add('avatar-hidden'),
+    onLeave: () => avatarEl.classList.remove('avatar-hidden'),
+    onLeaveBack: () => avatarEl.classList.remove('avatar-hidden'),
+  });
 }
 
 // Fetch GitHub Projects

@@ -89,6 +89,11 @@ ul {
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: opacity 0.4s ease;
+}
+
+.global-avatar.avatar-hidden {
+  opacity: 0 !important;
 }
 
 .avatar-container {
